@@ -6,7 +6,7 @@ import (
 	"errors"
 	"log"
 
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/domain"
 	_ "github.com/mattn/go-sqlite3" // sqlite3 driver
 )
 

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/escalopa/peer-cast/internal/config"
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/config"
+	"github.com/escalopa/vego/internal/domain"
 	"github.com/stretchr/testify/require"
 )
 

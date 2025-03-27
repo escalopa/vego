@@ -8,7 +8,7 @@ import (
 	context "context"
 	reflect "reflect"
 
-	domain "github.com/escalopa/peer-cast/internal/domain"
+	domain "github.com/escalopa/vego/internal/domain"
 	gomock "github.com/golang/mock/gomock"
 	websocket "github.com/gorilla/websocket"
 )

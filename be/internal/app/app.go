@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/domain"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"

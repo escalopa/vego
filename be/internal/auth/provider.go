@@ -3,7 +3,7 @@ package auth
 import (
 	"fmt"
 
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/domain"
 	"golang.org/x/oauth2"
 )
 

@@ -5,8 +5,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/escalopa/peer-cast/internal/domain"
-	"github.com/escalopa/peer-cast/internal/service/mock"
+	"github.com/escalopa/vego/internal/domain"
+	"github.com/escalopa/vego/internal/service/mock"
 	"github.com/golang/mock/gomock"
 	"github.com/gorilla/websocket"
 	"github.com/stretchr/testify/require"

@@ -1,4 +1,4 @@
-module github.com/escalopa/peer-cast
+module github.com/escalopa/vego
 
 go 1.24
 

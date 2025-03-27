@@ -5,7 +5,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/domain"
 	"github.com/gin-gonic/gin"
 )
 

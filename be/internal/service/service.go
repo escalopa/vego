@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/domain"
 	"github.com/gorilla/websocket"
 )
 

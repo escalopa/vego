@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/domain"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
 )

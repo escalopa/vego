@@ -4,12 +4,12 @@ import (
 	"flag"
 	"log"
 
-	"github.com/escalopa/peer-cast/internal/app"
-	"github.com/escalopa/peer-cast/internal/auth"
-	"github.com/escalopa/peer-cast/internal/config"
-	"github.com/escalopa/peer-cast/internal/db"
-	"github.com/escalopa/peer-cast/internal/room"
-	"github.com/escalopa/peer-cast/internal/service"
+	"github.com/escalopa/vego/internal/app"
+	"github.com/escalopa/vego/internal/auth"
+	"github.com/escalopa/vego/internal/config"
+	"github.com/escalopa/vego/internal/db"
+	"github.com/escalopa/vego/internal/room"
+	"github.com/escalopa/vego/internal/service"
 )
 
 var configPath = flag.String("config", "config.yml", "path to config file")

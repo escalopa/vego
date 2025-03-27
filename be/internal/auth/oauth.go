@@ -8,8 +8,8 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/escalopa/peer-cast/internal/config"
-	"github.com/escalopa/peer-cast/internal/domain"
+	"github.com/escalopa/vego/internal/config"
+	"github.com/escalopa/vego/internal/domain"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/github"
 	"golang.org/x/oauth2/google"
