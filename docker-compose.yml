@@ -1,0 +1,13 @@
+services:
+  be:
+    image: vego-be:local
+    container_name: be
+    build:
+      context: ./be
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./be/config.yml:/app/config.yml
+      - ./be/database.db:/app/database.db
+    command: ["/go/bin/vego","--config", "/app/config.yml"]

@@ -43,7 +43,6 @@ tasks:
 
   deps:
     cmds:
-      # TOOLS
       - GOBIN={{.GOBIN}} go install golang.org/x/tools/cmd/goimports@v0.19.0
       - GOBIN={{.GOBIN}} go install github.com/mgechev/revive@v1.3.7
       - GOBIN={{.GOBIN}} go install github.com/golang/mock/mockgen@v1.6.0
