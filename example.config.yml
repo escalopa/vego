@@ -1,0 +1,34 @@
+app:
+  addr: ":8080"
+  domain: "http://localhost:8080/api/health"
+  allow_origins:
+    - "http://localhost"
+
+db:
+  file: "./database.db"
+
+jwt:
+  room:
+    secret_key: "your_room_secret_key"
+    token_ttl: 1m
+  auth:
+    secret_key: "your_auth_secret_key"
+    access_token_ttl: 1h
+    refresh_token_ttl: 720h
+
+oauth:
+  google:
+    client_id: "your-google-client-id"
+    client_secret: "your-google-client-secret"
+    redirect_url: "http://localhost:8080/api/oauth/google/callback"
+    user_endpoint: "https://www.googleapis.com/oauth2/v2/userinfo"
+  github:
+    client_id: "your-github-client-id"
+    client_secret: "your-github-client-secret"
+    redirect_url: "http://localhost:8080/api/oauth/github/callback"
+    user_endpoint: "https://api.github.com/user"
+  yandex:
+    client_id: "your-yandex-client-id"
+    client_secret: "your-yandex-client-secret"
+    redirect_url: "http://localhost:8080/api/oauth/yandex/callback"
+    user_endpoint: "https://login.yandex.ru/info?format=json"
