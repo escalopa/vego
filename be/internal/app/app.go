@@ -80,7 +80,7 @@ func (a *App) setup() {
 	a.r.GET("/api/health", a.health)
 
 	userRoutes := a.r.Group("/api/user")
-	userRoutes.Use(a.authMiddleware) // Apply auth middleware to user routes
+	userRoutes.Use(a.authMiddleware)
 	{
 		userRoutes.GET("/info", a.getUserInfo)
 		userRoutes.POST("/logout", a.logout)
@@ -134,7 +134,7 @@ func (a *App) joinRoom(c *gin.Context) {
 func (a *App) ws(c *gin.Context) {
 	roomID := c.Param("room_id")
 	if _, err := uuid.Parse(roomID); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "corrupted room id"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "corrupted room id (uuid expected)"})
 		return
 	}
 
@@ -195,7 +195,6 @@ func (a *App) oauthCallback(c *gin.Context) {
 	}
 
 	a.setTokenCookie(c, token)
-	c.Redirect(http.StatusFound, a.cfg.Domain)
 }
 
 func (a *App) user(c *gin.Context) *domain.User {
