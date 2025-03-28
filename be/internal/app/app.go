@@ -96,7 +96,7 @@ func (a *App) setup() {
 	oauthRoutes := a.r.Group("/api/oauth")
 	{
 		oauthRoutes.GET("/:provider", a.oauthRedirect)
-		oauthRoutes.GET("/:provider/callback", a.oauthCallback)
+		oauthRoutes.POST("/:provider/callback", a.oauthCallback)
 	}
 }
 
@@ -177,18 +177,32 @@ func (a *App) oauthRedirect(c *gin.Context) {
 		return
 	}
 
-	c.Redirect(http.StatusFound, url)
+	c.JSON(http.StatusOK, gin.H{"url": url})
+}
+
+type oauthCallbackBody struct {
+	Code string `json:"code"`
 }
 
 func (a *App) oauthCallback(c *gin.Context) {
 	provider := c.Param("provider")
-	code := c.Query("code")
-	if code == "" {
+	if provider == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "empty oauth provider"})
+		return
+	}
+
+	var body oauthCallbackBody
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "corrupted request body"})
+		return
+	}
+
+	if body.Code == "" {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "empty code"})
 		return
 	}
 
-	token, err := a.srv.RegisterUser(c.Request.Context(), provider, code)
+	token, err := a.srv.RegisterUser(c.Request.Context(), provider, body.Code)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "temporary cannot register user"})
 		return
