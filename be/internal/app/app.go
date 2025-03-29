@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"slices"
 	"time"
 
 	"github.com/escalopa/vego/internal/domain"
@@ -47,23 +48,19 @@ func New(cfg Config, srv service) *App {
 		MaxAge:           12 * time.Hour,
 	})
 
+	upgrader := &websocket.Upgrader{
+		ReadBufferSize:  1024 * 1024, // 1MB
+		WriteBufferSize: 1024 * 1024, // 1MB
+		CheckOrigin: func(r *http.Request) bool {
+			return slices.Contains(cfg.AllowOrigins, r.Header.Get("Origin"))
+		},
+	}
+
 	a := &App{
 		r:   gin.Default(),
 		cfg: cfg,
 		srv: srv,
-		upg: &websocket.Upgrader{
-			ReadBufferSize:  1024 * 1024,
-			WriteBufferSize: 1024 * 1024,
-			CheckOrigin: func(r *http.Request) bool {
-				origin := r.Header.Get("Origin")
-				for _, o := range cfg.AllowOrigins {
-					if o == origin {
-						return true
-					}
-				}
-				return false
-			},
-		},
+		upg: upgrader,
 	}
 
 	a.r.Use(kors)
