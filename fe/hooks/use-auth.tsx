@@ -9,6 +9,7 @@ interface AuthContextType {
   isLoading: boolean
   isAuthenticated: boolean
   setUser: (user: User | null) => void
+  checkAuth: () => Promise<boolean>
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -16,26 +17,30 @@ const AuthContext = createContext<AuthContextType>({
   isLoading: true,
   isAuthenticated: false,
   setUser: () => {},
+  checkAuth: async () => false,
 })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const userData = await getUserInfo()
-        setUser(userData)
-      } catch (error) {
-        console.log("Not authenticated")
-        setUser(null)
-      } finally {
-        setIsLoading(false)
-      }
+  const checkAuth = async () => {
+    try {
+      const userData = await getUserInfo()
+      setUser(userData)
+      return true
+    } catch (error) {
+      console.log("Not authenticated")
+      setUser(null)
+      return false
+    } finally {
+      setIsLoading(false)
     }
+  }
 
-    fetchUser()
+  // Only check auth status on mount
+  useEffect(() => {
+    checkAuth()
   }, [])
 
   return (
@@ -45,6 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         isLoading,
         isAuthenticated: !!user,
         setUser,
+        checkAuth,
       }}
     >
       {children}

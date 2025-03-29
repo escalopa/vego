@@ -13,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light">
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className} suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Providers>
             {children}
             <Toaster />
@@ -26,10 +26,6 @@ export default function RootLayout({
   )
 }
 
-
-
-import './globals.css'
-
 export const metadata = {
-      generator: 'v0.dev'
-    };
+  generator: 'v0.dev'
+}
